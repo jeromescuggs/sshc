@@ -11,10 +11,10 @@ It is also possible that a host key has just been changed.
 The fingerprint for the ECDSA key sent by the remote host is
 SHA256:0XDEADBEEFTRKjB3z6f8hJ1VvLet0JgIl2TWA73LV3M.
 Please contact your system administrator.
-Add correct host key in /home/jerome/.ssh/known_hosts to get rid of this message.
-Offending ECDSA key in /home/jerome/.ssh/known_hosts:13
+Add correct host key in /home/$USER/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/$USER/.ssh/known_hosts:13
   remove with:
-  ssh-keygen -f "/home/jerome/.ssh/known_hosts" -R "192.168.0.XX"
+  ssh-keygen -f "/home/$USER/.ssh/known_hosts" -R "192.168.0.XX"
 ECDSA host key for 192.168.0.XX has changed and you have requested strict checking.
 Host key verification failed.
 ```
@@ -22,8 +22,8 @@ Host key verification failed.
 this is a script that just wraps around that `ssh-keygen` command. 
 
 ```
-> sshc 192.168.0.22
-# Host 192.168.0.xx found: line 13
+> sshc 192.168.0.XX
+# Host 192.168.0.XX found: line 13
 /home/$USER/.ssh/known_hosts updated.
 Original contents retained as /home/$USER/.ssh/known_hosts.old
 ```
