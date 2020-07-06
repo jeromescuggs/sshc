@@ -1,4 +1,7 @@
 # sshc
+
+## overview 
+
 i play with a lot of SBC's. after reflashing, the new image usually auto-generates new ssh keys, and when i try to `ssh` in, i get:
 
 ```
@@ -19,6 +22,8 @@ ECDSA host key for 192.168.0.XX has changed and you have requested strict checki
 Host key verification failed.
 ```
 
+## usage 
+
 this is a script that just wraps around that `ssh-keygen` command. 
 
 ```
@@ -27,14 +32,35 @@ this is a script that just wraps around that `ssh-keygen` command.
 /home/$USER/.ssh/known_hosts updated.
 Original contents retained as /home/$USER/.ssh/known_hosts.old
 ```
-it's super useful when you have a large `known_hosts` file, i never liked just deleting my file outright because then <s>i would have to re-confirm each and every device you connect to</s> it was a poor habit, security-wise.
+it's super useful when you have a large `known_hosts` file, i never liked just deleting my file outright because then ~~i would have to re-confirm each and every device you connect to~~ it was a poor habit, security-wise.
 
-just place `sshc` into your `$PATH`, and `chmod +x` if necessary. i like to keep little scripts in `~/.bin` by adding this into my shell rc file:
+## install 
+
+to install this script you can simply run `install.sh` which will copy `sshc` into `~/.local/bin`. if this directory does not exist it will be created. 
 
 ```
-if [[ -d /home/$USER/.bin ]]; then
-    export PATH="$PATH:/home/$USER/.bin
-fi 
+checking for /home/jerome/.local/bin and creating if it doesn't exist
+installing sshc to /home/jerome/.local/bin...
+all done!
+to call this command globally, make sure .local/bin is in your path.
+for info on how to set up path, run ./install.sh path
 ```
 
-i like to wrap it in the conditional so i can keep it in my 'universal' rc file. 
+for instructions on adding the script's directory to your path, you can run `./install.sh path`:
+
+```
+PATH SETUP:
+copy the following and add it to your shell rc file:
+
+    if [ -d $HOME/.local/bin ]; then
+        export PATH="$PATH:$HOME/.local/bin"
+    fi
+
+and reload or relaunch your shell.
+```
+
+of course you can just go ahead and follow these instructions from here :)
+
+i'm a fan of keeping one shell rc file i can deploy from one place, but use anywhere. so rather than simply `export` the path, i wrap the command in an `if` `then` conditional that first checks to see if the directory being added exists. this way i can use the same rc anywhere - and if i later create `.local/bin` and reload the shell, it will automatically be ready to run scripts from that location. 
+
+
