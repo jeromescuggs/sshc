@@ -24,7 +24,7 @@ Host key verification failed.
 
 ## usage 
 
-this is a script that just wraps around that `ssh-keygen` command. 
+this is a script that just wraps around that `ssh-keygen -f` command. 
 
 ```
 > sshc 192.168.0.XX
