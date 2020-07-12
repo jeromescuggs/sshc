@@ -34,6 +34,8 @@ Original contents retained as /home/$USER/.ssh/known_hosts.old
 ```
 it's super useful when you have a large `known_hosts` file, i never liked just deleting my file outright because then ~~i would have to re-confirm each and every device you connect to~~ it was a poor habit, security-wise.
 
+when the script is run with no arguments, it will default to pulling up a quick help menu, courtesy of a neat gist written by @[kovetskiy]. 
+
 ## install 
 
 to install this script you can simply run `install.sh` which will copy `sshc` into `~/.local/bin`. if this directory does not exist it will be created. 
@@ -64,3 +66,5 @@ of course you can just go ahead and follow these instructions from here :)
 i'm a fan of keeping one shell rc file i can deploy from one place, but use anywhere. so rather than simply `export` the path, i wrap the command in an `if` `then` conditional that first checks to see if the directory being added exists. this way i can use the same rc anywhere - and if i later create `.local/bin` and reload the shell, it will automatically be ready to run scripts from that location. 
 
 
+
+[kovetskiy]:https://gist.github.com/kovetskiy/a4bb510595b3a6b17bfd1bd9ac8bb4a5

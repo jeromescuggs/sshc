@@ -1,13 +1,25 @@
 #!/bin/bash
+### sshc is a simple wraparound for the 'ssh-keygen -fR' command
+### the -f option is set to $HOME/.ssh/known_hosts
+### USAGE: sshc <host>
+### e.g.:  sshc 192.168.1.10
 
 ip=$1
 
-if [[ -z $1 ]]; then
-		echo "sshc is a simple wraparound for the 'ssh-keygen -fR' command" 
-		echo "the -f option is set to \$HOME/.ssh/known_hosts"
-		echo "USAGE: sshc <host>"
-		echo "e.g.:  sshc 192.168.1.10"
-else
+help() {
+		    sed -rn 's/^### ?//;T;p' "$0"
+	}
+
+if [[ $# == 0 ]] || [[ "$1" == "-h" ]]; then
+		    help
+			    exit 1
+fi
+# if [[ -z $1 ]]; then
+#		echo "sshc is a simple wraparound for the 'ssh-keygen -fR' command" 
+#		echo "the -f option is set to \$HOME/.ssh/known_hosts"
+#		echo "USAGE: sshc <host>"
+#		echo "e.g.:  sshc 192.168.1.10"
+#else
 		ssh-keygen -f "$HOME/.ssh/known_hosts" -R "$ip"
-fi 
+#fi 
 
